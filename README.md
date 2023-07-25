@@ -15,3 +15,9 @@ gradle test
 ```bash
 gradle bootRun
 ```
+
+#### Read this as reference
+
+- https://josdem.io/techtalk/spring/spring_webflux_basics/
+- https://josdem.io/techtalk/spring/spring_webflux_server/
+- https://josdem.io/techtalk/java/junit5/
