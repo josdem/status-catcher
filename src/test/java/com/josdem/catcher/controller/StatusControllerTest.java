@@ -22,4 +22,18 @@ class StatusControllerTest {
     log.info("Running: {}", testInfo.getDisplayName());
     webTestClient.post().uri("/catcher/sku/100").exchange().expectStatus().isOk();
   }
+
+  @Test
+  @DisplayName("it gets status")
+  void shouldGetStatus(TestInfo testInfo) {
+    log.info("Running: {}", testInfo.getDisplayName());
+    webTestClient
+        .get()
+        .uri("/catcher/sku")
+        .exchange()
+        .expectStatus()
+        .isOk()
+        .expectBody(String.class)
+        .isEqualTo("100");
+  }
 }
