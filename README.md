@@ -1,7 +1,7 @@
-Shopping Cart Service
+Status Catcher Service
 ----------------------------------------------
 
-Status catcher service is an API that keeps application status it is using [Spring Webflux Framework](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html) and [Junit5](https://junit.org/junit5/)
+Is an API that keeps application status using [Spring Webflux Framework](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html) and [Junit5](https://junit.org/junit5/)
 for testing.
 
 #### To run tests
