@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class CatcherApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CatcherApplication.class, args);
-	}
-
+  public static void main(String[] args) {
+    SpringApplication.run(CatcherApplication.class, args);
+  }
 }
