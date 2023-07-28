@@ -16,6 +16,10 @@ gradle test
 gradle bootRun
 ```
 
+#### Swagger
+
+http://localhost:8080/swagger-ui.html
+
 #### Read this as reference
 
 - https://josdem.io/techtalk/spring/spring_webflux_basics/
