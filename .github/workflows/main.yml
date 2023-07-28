@@ -22,4 +22,4 @@ jobs:
       - name: List files in the repository
         run: ls ${{ github.workspace }}
       - name: Execute tests
-        run: ./gradlew jacocoTestReport test
+        run: ./gradlew jacocoTestReport sonarqube test

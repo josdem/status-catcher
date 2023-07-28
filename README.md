@@ -16,6 +16,12 @@ gradle test
 gradle bootRun
 ```
 
+#### To run tests with Jacoco and Sonarqube
+
+```bash
+gradle jacocoTestReport sonarqube test
+```
+
 #### Swagger
 
 http://localhost:8080/swagger-ui.html
