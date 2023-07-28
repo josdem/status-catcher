@@ -1,6 +1,9 @@
 Status Catcher Service
 ----------------------------------------------
 
+[![GitHub](https://github.com/josdem/status-catcher/actions/workflows/main.yml/badge.svg)](https://github.com/josdem/status-catcher/actions)
+[![Quality Gate Status](https://sonar.josdem.io/api/project_badges/measure?project=com.josdem.catcher%3Astatus-catcher-service&metric=alert_status)](https://sonar.josdem.io/dashboard?id=com.josdem.catcher%3Astatus-catcher-service)
+
 Is an API that keeps application status using [Spring Webflux Framework](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html) and [Junit5](https://junit.org/junit5/)
 for testing.
 
