@@ -22,13 +22,13 @@ public class StatusController {
   @PostMapping("/{key}/{value}")
   public Mono<Void> storeStatus(@PathVariable String key, @PathVariable String value) {
     log.info("Storing status with key: {} and value: {}", key, value);
-    memory.putIfAbsent(key, value);
+    memory.put(key, value);
     return Mono.empty();
   }
 
   @GetMapping("/{key}")
   public Mono<String> getStatus(@PathVariable String key) {
     log.info("Getting status from key: {}", key);
-    return Mono.just(memory.get(key));
+    return Mono.just(memory.containsKey(key) ? memory.get(key) : "");
   }
 }
