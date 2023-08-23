@@ -19,6 +19,11 @@ gradle test
 gradle bootRun
 ```
 
+#### To enable interceptor filter
+```bash
+gradle bootRun -Dinterceptor.enabled=true
+```
+
 #### To run tests with Jacoco and Sonarqube
 
 ```bash
