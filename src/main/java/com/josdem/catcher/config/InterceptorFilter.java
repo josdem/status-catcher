@@ -19,6 +19,7 @@ public class InterceptorFilter implements WebFilter {
             request -> {
               exchange.getRequest().getHeaders().forEach((key, value) -> log.info("header: {} - {}", key, value));
               exchange.getAttributes().forEach((key, value) -> log.info("attribute: {} - {}", key, value));
+              log.info("method: {}", exchange.getRequest().getMethod().name());
             });
   }
 }
