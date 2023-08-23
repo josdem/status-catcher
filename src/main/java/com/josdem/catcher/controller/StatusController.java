@@ -29,6 +29,6 @@ public class StatusController {
   @GetMapping("/{key}")
   public Mono<String> getStatus(@PathVariable String key) {
     log.info("Getting status from key: {}", key);
-    return Mono.just(memory.containsKey(key) ? memory.get(key) : "");
+    return Mono.just(memory.containsKey(key) ? memory.get(key) : " ");
   }
 }

@@ -36,4 +36,18 @@ class StatusControllerTest {
         .expectBody(String.class)
         .isEqualTo("100");
   }
+
+  @Test
+  @DisplayName("it gets empty status")
+  void shouldGetEmptyStatus(TestInfo testInfo) {
+    log.info("Running: {}", testInfo.getDisplayName());
+    webTestClient
+        .get()
+        .uri("/catcher/thisSkuDoesNotExist")
+        .exchange()
+        .expectStatus()
+        .isOk()
+        .expectBody(String.class)
+        .isEqualTo(" ");
+  }
 }
