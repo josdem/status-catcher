@@ -22,7 +22,7 @@ gradle bootRun
 #### To run tests with Jacoco and Sonarqube
 
 ```bash
-gradle jacocoTestReport sonarqube test
+gradle jacocoTestReport sonar test
 ```
 
 #### Swagger
