@@ -1,1 +1,4 @@
-interceptor.enabled: false
+swagger:
+  server: "https://catcher.josdem.io"
+interceptor:
+  enabled: false
