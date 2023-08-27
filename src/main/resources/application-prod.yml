@@ -1,4 +1,4 @@
 swagger:
-  server: "http://localhost:8080"
+  server: "https://catcher.josdem.io"
 interceptor:
   enabled: false
