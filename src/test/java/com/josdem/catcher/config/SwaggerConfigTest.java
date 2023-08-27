@@ -25,5 +25,9 @@ class SwaggerConfigTest {
   void shouldAddSwaggerService(TestInfo testInfo) {
     log.info("Running: {}", testInfo.getDisplayName());
     assertEquals(1, swaggerConfig.customOpenAPI().getServers().size(), "should have one server");
+    assertEquals(
+        SWAGGER_SERVER,
+        swaggerConfig.customOpenAPI().getServers().get(0).getUrl(),
+        "should have expected server");
   }
 }

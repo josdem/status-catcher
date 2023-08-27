@@ -13,6 +13,15 @@ for testing.
 gradle test
 ```
 
+#### To run a single test
+
+```bash
+gradle test --tests ${testName}
+```
+
+where:
+- `${testName}` is your test name
+
 #### To run the project
 
 ```bash
