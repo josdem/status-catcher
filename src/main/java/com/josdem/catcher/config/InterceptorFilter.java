@@ -12,8 +12,11 @@ import reactor.core.publisher.Mono;
 @Component
 public class InterceptorFilter implements WebFilter {
 
-  @Value("${interceptor.enabled}")
   private boolean interceptorEnabled;
+
+  public InterceptorFilter(@Value("${interceptor.enabled}") boolean interceptorEnabled) {
+    this.interceptorEnabled = interceptorEnabled;
+  }
 
   @Override
   public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
