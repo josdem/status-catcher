@@ -1,5 +1,7 @@
 package com.josdem.catcher.model;
 
+import jakarta.validation.constraints.Min;
+import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,8 +9,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Person {
+public class Product {
 
   private String name;
-  private int score;
+
+  @Min(1)
+  private BigDecimal price;
 }

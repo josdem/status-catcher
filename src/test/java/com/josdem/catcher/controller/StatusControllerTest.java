@@ -1,6 +1,7 @@
 package com.josdem.catcher.controller;
 
-import com.josdem.catcher.model.Person;
+import com.josdem.catcher.model.Product;
+import java.math.BigDecimal;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
@@ -17,7 +18,7 @@ import org.springframework.web.reactive.function.BodyInserters;
 class StatusControllerTest {
 
   private final WebTestClient webTestClient;
-  private final Person person = new Person("josdem", 100);
+  private final Product product = new Product("PIZZA", new BigDecimal("0.00"));
 
   @Test
   @DisplayName("it stores status")
@@ -26,7 +27,7 @@ class StatusControllerTest {
     webTestClient
         .post()
         .uri("/catcher/sku")
-        .bodyValue(BodyInserters.fromValue(person))
+        .bodyValue(BodyInserters.fromValue(product))
         .exchange()
         .expectStatus()
         .isOk();
@@ -49,7 +50,7 @@ class StatusControllerTest {
         .exchange()
         .expectStatus()
         .isOk()
-        .expectBody(Person.class)
-        .isEqualTo(new Person());
+        .expectBody(Product.class)
+        .isEqualTo(new Product());
   }
 }
