@@ -18,7 +18,7 @@ import org.springframework.web.reactive.function.BodyInserters;
 class StatusControllerTest {
 
   private final WebTestClient webTestClient;
-  private final Product product = new Product("PIZZA", new BigDecimal("0.00"));
+  private final Product product = new Product("PIZZA", new BigDecimal("15.99"));
 
   @Test
   @DisplayName("it stores status")

@@ -1,6 +1,6 @@
 package com.josdem.catcher.model;
 
-import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.DecimalMin;
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +13,6 @@ public class Product {
 
   private String name;
 
-  @Min(1)
+  @DecimalMin(value = "0", inclusive = false)
   private BigDecimal price;
 }
