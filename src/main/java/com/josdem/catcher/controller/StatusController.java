@@ -1,5 +1,6 @@
 package com.josdem.catcher.controller;
 
+import com.josdem.catcher.model.Person;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import lombok.RequiredArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
@@ -17,18 +19,18 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/catcher")
 public class StatusController {
 
-  private final Map<String, String> memory = new ConcurrentHashMap<>();
+  private final Map<String, Person> memory = new ConcurrentHashMap<>();
 
-  @PostMapping("/{key}/{value}")
-  public Mono<Void> storeStatus(@PathVariable String key, @PathVariable String value) {
-    log.info("Storing status with key: {} and value: {}", key, value);
-    memory.put(key, value);
+  @PostMapping("/{key}")
+  public Mono<Void> storeStatus(@PathVariable String key, @RequestBody Person person) {
+    log.info("Storing status with key: {} and value: {}", key, person);
+    memory.put(key, person);
     return Mono.empty();
   }
 
   @GetMapping("/{key}")
-  public Mono<String> getStatus(@PathVariable String key) {
+  public Mono<Person> getStatus(@PathVariable String key) {
     log.info("Getting status from key: {}", key);
-    return Mono.just(memory.containsKey(key) ? memory.get(key) : " ");
+    return Mono.just(memory.containsKey(key) ? memory.get(key) : new Person());
   }
 }
