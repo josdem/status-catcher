@@ -4,9 +4,13 @@ import com.josdem.catcher.model.Product;
 import com.josdem.catcher.model.Status;
 import jakarta.validation.Valid;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.concurrent.ConcurrentHashMap;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,9 +42,18 @@ public class StatusController {
   }
 
   @PutMapping("/{key}/{status}")
-  public Mono<Product> updateStatus(@PathVariable String key, @PathVariable String status) {
+  public Mono<Product> updateStatus(@PathVariable String key, @PathVariable String status) throws NoSuchMethodException {
     log.info("Updating status with key: {} and status: {}", key, status);
-    memory.get(key).setStatus(Status.valueOf(status));
-    return Mono.just(memory.get(key));
+    if(!memory.containsKey(key)){
+      throw new NoSuchElementException("Key not found");
+    }
+    Product product = memory.get(key);
+    product.setStatus(Status.valueOf(status));
+    return Mono.just(product);
+  }
+
+  @ExceptionHandler(NoSuchElementException.class)
+  public ResponseEntity<String> handleException() {
+    return new ResponseEntity<>("Product not found", HttpStatus.NOT_FOUND);
   }
 }
