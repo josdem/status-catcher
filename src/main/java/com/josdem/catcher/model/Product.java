@@ -15,4 +15,6 @@ public class Product {
 
   @DecimalMin(value = "0", inclusive = false)
   private BigDecimal price;
+
+  private final Status status = Status.NEW;
 }
