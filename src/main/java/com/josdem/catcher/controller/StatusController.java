@@ -42,7 +42,7 @@ public class StatusController {
   }
 
   @PutMapping("/{key}/{status}")
-  public Mono<Product> updateStatus(@PathVariable String key, @PathVariable String status) throws NoSuchMethodException {
+  public Mono<Product> updateStatus(@PathVariable String key, @PathVariable String status) {
     log.info("Updating status with key: {} and status: {}", key, status);
     if(!memory.containsKey(key)){
       throw new NoSuchElementException("Key not found");
