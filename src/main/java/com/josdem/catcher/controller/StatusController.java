@@ -5,6 +5,7 @@ import com.josdem.catcher.model.Status;
 import jakarta.validation.Valid;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -44,12 +45,12 @@ public class StatusController {
   @PutMapping("/{key}/{status}")
   public Mono<Product> updateStatus(@PathVariable String key, @PathVariable String status) {
     log.info("Updating status with key: {} and status: {}", key, status);
-    if (!memory.containsKey(key)) {
+    Optional<Product> optional = Optional.ofNullable(memory.get(key));
+    if (optional.isEmpty()) {
       throw new NoSuchElementException("Key not found");
     }
-    Product product = memory.get(key);
-    product.setStatus(Status.valueOf(status));
-    return Mono.just(product);
+    optional.get().setStatus(Status.valueOf(status));
+    return Mono.just(optional.get());
   }
 
   @ExceptionHandler(NoSuchElementException.class)
