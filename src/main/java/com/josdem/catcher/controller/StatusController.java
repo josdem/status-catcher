@@ -38,9 +38,9 @@ public class StatusController {
   }
 
   @PutMapping("/{key}/{status}")
-    public Mono<Void> updateStatus(@PathVariable String key, @PathVariable String status) {
-        log.info("Updating status with key: {} and status: {}", key, status);
-        memory.get(key).setStatus(Status.valueOf(status));
-        return Mono.empty();
-    }
+  public Mono<Product> updateStatus(@PathVariable String key, @PathVariable String status) {
+    log.info("Updating status with key: {} and status: {}", key, status);
+    memory.get(key).setStatus(Status.valueOf(status));
+    return Mono.just(memory.get(key));
+  }
 }

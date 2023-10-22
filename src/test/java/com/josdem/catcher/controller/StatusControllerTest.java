@@ -1,6 +1,7 @@
 package com.josdem.catcher.controller;
 
 import com.josdem.catcher.model.Product;
+import com.josdem.catcher.model.Status;
 import java.math.BigDecimal;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +19,7 @@ import org.springframework.web.reactive.function.BodyInserters;
 class StatusControllerTest {
 
   private final WebTestClient webTestClient;
-  private final Product product = new Product("PIZZA", new BigDecimal("15.99"));
+  private final Product product = new Product("PIZZA", new BigDecimal("15.99"), Status.NEW);
 
   @Test
   @DisplayName("it stores status")
@@ -52,5 +53,20 @@ class StatusControllerTest {
         .isOk()
         .expectBody(Product.class)
         .isEqualTo(new Product());
+  }
+
+  @Test
+  @DisplayName("it updates status")
+  void shouldUpdateStatus(TestInfo testInfo) {
+    log.info("Running: {}", testInfo.getDisplayName());
+
+    webTestClient
+        .put()
+        .uri("/catcher/sku/ACTIVE")
+        .exchange()
+        .expectStatus()
+        .isOk()
+        .expectBody(Product.class)
+        .value(product -> product.getStatus().equals(Status.ACTIVE));
   }
 }
