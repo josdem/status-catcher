@@ -69,4 +69,12 @@ class StatusControllerTest {
         .expectBody(Product.class)
         .value(product -> product.getStatus().equals(Status.ACTIVE));
   }
+
+  @Test
+  @DisplayName("it throws an exception when update status")
+  void shouldNotUpdateStatusDueToProductDoesNotExist(TestInfo testInfo) {
+    log.info("Running: {}", testInfo.getDisplayName());
+
+    webTestClient.put().uri("/catcher/doNotExist/ACTIVE").exchange().expectStatus().isNotFound();
+  }
 }
