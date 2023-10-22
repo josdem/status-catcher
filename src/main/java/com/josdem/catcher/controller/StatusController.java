@@ -1,6 +1,7 @@
 package com.josdem.catcher.controller;
 
 import com.josdem.catcher.model.Product;
+import com.josdem.catcher.model.Status;
 import jakarta.validation.Valid;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -9,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,4 +36,11 @@ public class StatusController {
     log.info("Getting status from key: {}", key);
     return Mono.just(memory.containsKey(key) ? memory.get(key) : new Product());
   }
+
+  @PutMapping("/{key}/{status}")
+    public Mono<Void> updateStatus(@PathVariable String key, @PathVariable String status) {
+        log.info("Updating status with key: {} and status: {}", key, status);
+        memory.get(key).setStatus(Status.valueOf(status));
+        return Mono.empty();
+    }
 }
